@@ -21,27 +21,30 @@ package sharedClassLibrary;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.EOFException;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 
 public class NameIndex 
 {
     /**************************** PRIVATE DECLARATIONS ************************/
     private File file;
-    private BufferedReader buffer;
-    private PrintWriter writer;
+    private DataInputStream inFile;
+    private DataOutputStream outFile;
     private ArrayList<Country> countries;
+    private ArrayList<Country> alphaList;
     private DecimalFormat fmt = new DecimalFormat("000");
     private int visited;
-    private ArrayList<Country> alphaList;
    
     /**************************** PUBLIC CONSTRUCTOR(S) ***********************/
     public NameIndex() {
-    	file = new File("NameIndexBackup.txt");
+    	file = new File("NameIndexBackup.bin");
     	try {
 			file.createNewFile();
 		} catch (IOException e) {}
@@ -86,32 +89,35 @@ public class NameIndex
 
     /**************************** PUBLIC SERVICE METHODS **********************/
     public void open() {
-    	String line = ""; String[] data = {};
+    	int read; String[] data = {};
 
 		try { // open NameIndexBackup and, if data present, load it
-			buffer = new BufferedReader(new FileReader(file));
-			buffer.readLine();
-			while ((line = buffer.readLine()) != null) {
-				data = line.split(",");
-				countries.add(new Country(data[0], Integer.parseInt(data[1]),
-							  Integer.parseInt(data[2]),
-							  Integer.parseInt(data[3])));
-			}
-			buffer.close();
-		} catch (IOException e) {}
+			inFile = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
+			inFile.skipBytes(12);
+			try {
+				while (true) {
+					countries.add(new Country(inFile.readUTF(), inFile.readInt(),
+								  inFile.readInt(), inFile.readInt()));
+				}
+			} catch (EOFException e) { inFile.close(); }
+		} catch (IOException e) {} 
     }
     
     public void close() {
-		try { // write out contents of countries ArrayList before closing
-			writer = new PrintWriter(new FileWriter(file));
-		} catch (IOException e) {}
+    	try {
+    		outFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
 
-    	writer.println(countries.size() + "," + countries.size() + "," + "0");
-    	for(Country e : countries) { // print header and then each entry
-    		writer.println(e.getName() + "," + e.getId() + ","
-    					   + e.getLeftChild() + "," + e.getRightChild());
-    	}
-    	writer.close();
+	    	outFile.writeInt(countries.size());
+	    	outFile.writeInt(countries.size());
+	    	outFile.writeInt(0);
+	    	for(Country e : countries) { // print header and then each entry
+	    		outFile.writeUTF(e.getName());
+	    		outFile.writeInt(e.getId());
+	    		outFile.writeInt(e.getLeftChild());
+	    		outFile.writeInt(e.getRightChild());
+	    	}
+	    	outFile.close();
+	    } catch (IOException e) {}
     }
     
     /**************************** PRIVATE METHODS *****************************/
@@ -128,7 +134,7 @@ public class NameIndex
 				return insert(name, countries.get(parent).getLeftChild());
 			} // otherwise continue looking to the LEFT
 
-		} else {
+		} else if(name.compareTo(countries.get(parent).getName()) > 0) {
 			if(countries.get(parent).getRightChild() == -1) {
 				countries.get(parent).setRightChild(countries.size());
 				countries.add(new Country(name, countries.size() + 1));
@@ -137,7 +143,9 @@ public class NameIndex
 			} else { // add node to the RIGHT of parent, return {id, nodes visited}
 				return insert(name, countries.get(parent).getRightChild());
 			} // otherwise continue looking to the RIGHT
-		}
+		} else {
+			return new String[] {"-1", Integer.toString(visited)};
+		} // lastly, don't add redundant entries
 	}
 	
 	private String[] search(String name, int parent) {
