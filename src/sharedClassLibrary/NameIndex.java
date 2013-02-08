@@ -89,9 +89,7 @@ public class NameIndex
 
     /**************************** PUBLIC SERVICE METHODS **********************/
     public void open() {
-    	int read; String[] data = {};
-
-		try { // open NameIndexBackup and, if data present, load it
+    	try { // open NameIndexBackup and, if data present, load it
 			inFile = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
 			inFile.skipBytes(12);
 			try {

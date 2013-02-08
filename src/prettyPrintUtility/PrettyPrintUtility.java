@@ -25,45 +25,52 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.util.Scanner;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.EOFException;
 
 public class PrettyPrintUtility 
 {
 	/**************************** PRIVATE DECLARATIONS ************************/
-    private File file = new File("NameIndexBackup.txt");
+    private File file = new File("NameIndexBackup.bin");
     private PrintWriter writer;
     private DecimalFormat fmt = new DecimalFormat("'0'00;'-'00");
-    private Scanner in;
+    private DataInputStream inFile;
 
 	/**************************** MAIN ****************************************/
     public PrettyPrintUtility() {
     	try {
-			in = new Scanner(file); // open files
+			inFile = new DataInputStream(new BufferedInputStream(new FileInputStream(file))); // open files
 			writer = new PrintWriter(new FileWriter(new File("Log.txt"), true));
 		} catch (IOException e) {}
 
-    	in.useDelimiter(",|\\n"); // delimit input, print header
-    	writer.println("\nN is " + in.next() + ", MaxID is " + in.next()
-    					   + ", RootPtr is " + in.next());
-    	writer.println("[SUB]\t- - - Name - - - - - - - - -\tDRP\tLCh\tRCh");
+        try {
+        	writer.println("\nN is " + inFile.readInt() + ", MaxID is " + inFile.readInt()
+        					   + ", RootPtr is " + inFile.readInt());
+        	writer.println("[SUB]\t- - - Name - - - - - - - - -\tDRP\tLCh\tRCh");
+        } catch (IOException e) {}
 
     	int i = 0;
-    	do { // print each record
-    		String name = in.next(); // cut names that are too long
-    		if(name.length() > 28) name = name.substring(0, 28);
+        try {
+        	try { // print each record
+                while (true) {
+            		String name = inFile.readUTF(); // cut names that are too long
+            		if(name.length() > 28) name = name.substring(0, 28);
 
-    		writer.print("[" + fmt.format(i++) + "]\t" + name);
-    		for(int j = 0; j < 4 - (name.length() / 8); j++) {
-    			writer.print("\t"); // print correct # of tabs
-    		}
-    		writer.println(fmt.format(in.nextInt()) + "\t"
-    					   + fmt.format(in.nextInt()) + "\t"
-    					   + fmt.format(in.nextInt()));
-    	} while(in.hasNext());
+            		writer.print("[" + fmt.format(i++) + "]\t" + name);
+            		for(int j = 0; j < 4 - (name.length() / 8); j++) {
+            			writer.print("\t"); // print correct # of tabs
+            		}
+            		writer.println(fmt.format(inFile.readInt()) + "\t"
+            					   + fmt.format(inFile.readInt()) + "\t"
+            					   + fmt.format(inFile.readInt()));
+                }
+        	} catch (EOFException e) { inFile.close(); }
+        } catch (IOException e) {}
 
     	writer.println("@ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @");
     	writer.close(); // close files
-    	in.close();
     }
     
     public static void main(String[] args) {
