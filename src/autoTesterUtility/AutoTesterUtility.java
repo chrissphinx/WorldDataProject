@@ -1,6 +1,3 @@
-/* NOTE:  NOT USED IN ASGN 1
- * */
-
 /* PROJECT:  WorldDataProject (Java)            PROGRAM: AutoTesterUtility
  * AUTHOR:  Kaminski/CS3310
  * PROGRAMS ACCESSED:  SetupProgram, UserApp, PrettyPrintUtility
@@ -15,7 +12,7 @@
  ******************************************************************************/
 package autoTesterUtility;
 
-import java.io.*;
+import java.io.File;
 import setupProgram.SetupProgram;
 import userApp.UserApp;
 import prettyPrintUtility.PrettyPrintUtility;
@@ -23,34 +20,39 @@ import prettyPrintUtility.PrettyPrintUtility;
 public class AutoTesterUtility {
 
     public static void main(String[] args) {
-        System.out.println("OK, starting AutoTesterUtilty");
+        SetupProgram.main(new String[] {});
+        PrettyPrintUtility.main(new String[] {});
+        UserApp.main(new String[] {});
+        PrettyPrintUtility.main(new String[] {});
 
-        // The 3 parallel arrays (all strings, including the N's) with
-        //      - hard-coded SUFFIX values to designate which files to use
-        //      - N's to limit how many records to display during testing
-        // The dataFileSuffix is used for RawData*.csv, MainData*.bin,
-        //      NameIndexBackup*.bin, CodeIndexBackup*.bin
+        // System.out.println("OK, starting AutoTesterUtilty");
 
-        String dataFileSuffix[]  = {"Tester", ""    };
-        String transFileSuffix[] = {"",       "All" };
-        String nRecToShow[]      = {"All",    "60"  };
+        // // The 3 parallel arrays (all strings, including the N's) with
+        // //      - hard-coded SUFFIX values to designate which files to use
+        // //      - N's to limit how many records to display during testing
+        // // The dataFileSuffix is used for RawData*.csv, MainData*.bin,
+        // //      NameIndexBackup*.bin, CodeIndexBackup*.bin
 
-        //Delete the SINGLE output Log.txt file (if it exists)
-        DeleteFile("Log.txt");
+        // String dataFileSuffix[]  = {"Tester", ""    };
+        // String transFileSuffix[] = {"",       "All" };
+        // String nRecToShow[]      = {"All",    "60"  };
 
-        for (int i = 0; i < dataFileSuffix.length; i++) {
-            //Delete 3 other output files (if they exist)
-            DeleteFile("MainData" + dataFileSuffix[i] + ".bin");
-            DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
-            DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
+        // //Delete the SINGLE output Log.txt file (if it exists)
+        // DeleteFile("Log.txt");
+
+        // for (int i = 0; i < dataFileSuffix.length; i++) {
+        //     //Delete 3 other output files (if they exist)
+        //     DeleteFile("MainData" + dataFileSuffix[i] + ".bin");
+        //     DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
+        //     DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
             
-            //Run the other 3 programs
-            SetupProgram.main(new String[]{dataFileSuffix[i]});
-            UserApp.main(new String[]{dataFileSuffix[i],
-                        transFileSuffix[i]});
-            PrettyPrintUtility.main(new String[]{dataFileSuffix[i],
-                        nRecToShow[i]});
-        }
+        //     //Run the other 3 programs
+        //     SetupProgram.main(new String[]{dataFileSuffix[i]});
+        //     UserApp.main(new String[]{dataFileSuffix[i],
+        //                 transFileSuffix[i]});
+        //     PrettyPrintUtility.main(new String[]{dataFileSuffix[i],
+        //                 nRecToShow[i]});
+        // }
     }
     //**************************** PRIVATE METHOD ******************************
     private static boolean DeleteFile(String fileName) {

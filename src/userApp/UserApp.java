@@ -86,13 +86,18 @@ public class UserApp extends Parser
     		case "IN":			// insert a new country
     			String[] data = parse(trans[1]); // from Parser class
     			result = NameIndex.insert(data[1]);
-    			UserInterface.log("IN " + data[1] + "\n"); // scrub insert request
-    			UserInterface.log("  OK, inserted with ID " + result[0]
-    							  + " >> " + result[1] + " nodes visited\n");
+                UserInterface.log("IN " + data[1] + "\n"); // scrub insert request
+                if("-1".equals(result[0])) {
+                    UserInterface.log("  ERROR, redundant entry >> " + result[1]
+                                      + " nodes visited\n");
+                } else {
+                    UserInterface.log("  OK, inserted with ID " + result[0]
+                                  + " >> " + result[1] + " nodes visited\n");
+                }
     			break;
     		case "DN":			// delete by name
     			UserInterface.log("  SORRY, deleting by name"
-    							  + "not yet operational\n");
+    							  + " not yet operational\n");
     			break;
     		}
     	}
