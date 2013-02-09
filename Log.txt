@@ -9,34 +9,265 @@
 >> ended SetupPogram - 25 data items processed
 >> closed Log FILE
 
-N is 25, MaxID is 25, RootPtr is 0
+>> opened Log FILE
+>> started UserApp
+>> opened NameIndexBackup FILE
+>> opened TransData FILE
+>> parsing file ...
+
+QN China
+  China 001 >> 1 nodes visited
+QN CHINA
+  China 001 >> 1 nodes visited
+QN chinA
+  China 001 >> 1 nodes visited
+QN Chin
+  ERROR, not a valid country name >> 3 nodes visited
+QN China
+  China 001 >> 1 nodes visited
+QN China
+  China 001 >> 1 nodes visited
+QN China doll
+  ERROR, not a valid country name >> 5 nodes visited
+QN China
+  China 001 >> 1 nodes visited
+QN # is < 0-9 (& so < A-Z)
+  ERROR, not a valid country name >> 4 nodes visited
+QN 4 is < A-Z
+  ERROR, not a valid country name >> 4 nodes visited
+QN = is > 0-9 & < A-Z
+  ERROR, not a valid country name >> 4 nodes visited
+QN ] is > A-Z & < a-z
+  ERROR, not a valid country name >> 4 nodes visited
+QN } is > a-z
+  ERROR, not a valid country name >> 5 nodes visited
+QN China=
+  ERROR, not a valid country name >> 5 nodes visited
+QN China
+  China 001 >> 1 nodes visited
+QN China
+  China 001 >> 1 nodes visited
+QN Wallis
+  ERROR, not a valid country name >> 7 nodes visited
+QN Wallis and Futuna
+  Wallis and Futuna 025 >> 7 nodes visited
+QN Wallis & Futuna
+  ERROR, not a valid country name >> 7 nodes visited
+QN Australia
+  Australia 013 >> 3 nodes visited
+QN Zimbabwe
+  Zimbabwe 014 >> 5 nodes visited
+QN Jordan
+  Jordan 020 >> 8 nodes visited
+QN Japan
+  Japan 027 >> 9 nodes visited
+QN Liechtenstein
+  Liechtenstein 024 >> 8 nodes visited
+QN London
+  ERROR, not a valid country name >> 8 nodes visited
+QN Albania
+  ERROR, not a valid country name >> 4 nodes visited
+QN Western Michigan University
+  ERROR, not a valid country name >> 7 nodes visited
+QN Zoo
+  ERROR, not a valid country name >> 5 nodes visited
+LN 
+  026 Argentina
+  013 Australia
+  030 Austria
+  031 Azerbaijan
+  032 Botswana
+  004 Brazil
+  034 Canada
+  001 China
+  029 Cuba
+  019 Dominican Republic
+  008 Egypt
+  010 France
+  016 Greece
+  017 Hungary
+  002 India
+  028 Jamaica
+  027 Japan
+  020 Jordan
+  035 Kazakstan
+  011 Kenya
+  024 Liechtenstein
+  007 Mexico
+  006 Nigeria
+  022 Oman
+  021 Palestine
+  023 Qatar
+  005 Russian Federation
+  018 Sweden
+  009 Turkey
+  033 United Kingdom
+  003 United States
+  036 United States Minor Outlying Islands
+  012 Venezuela
+  025 Wallis and Futuna
+  015 Yugoslavia
+  014 Zimbabwe
+DN China
+  SORRY, deleting by namenot yet operational
+DN Australia
+  SORRY, deleting by namenot yet operational
+QN China
+  China 001 >> 1 nodes visited
+QN Australia
+  Australia 013 >> 3 nodes visited
+DN United States
+  SORRY, deleting by namenot yet operational
+QN United States
+  United States 003 >> 3 nodes visited
+IN Argentina
+  OK, inserted with ID -1 >> 4 nodes visited
+IN Japan
+  OK, inserted with ID -1 >> 9 nodes visited
+IN Jamaica
+  OK, inserted with ID -1 >> 10 nodes visited
+IN Cuba
+  OK, inserted with ID -1 >> 5 nodes visited
+IN Austria
+  OK, inserted with ID -1 >> 4 nodes visited
+IN Azerbaijan
+  OK, inserted with ID -1 >> 5 nodes visited
+IN Botswana
+  OK, inserted with ID -1 >> 6 nodes visited
+IN United Kingdom
+  OK, inserted with ID -1 >> 6 nodes visited
+IN Canada
+  OK, inserted with ID -1 >> 3 nodes visited
+IN Kazakstan
+  OK, inserted with ID -1 >> 9 nodes visited
+IN United States Minor Outlying Islands
+  OK, inserted with ID -1 >> 5 nodes visited
+QN Argentina
+  Argentina 026 >> 4 nodes visited
+QN Japan
+  Japan 027 >> 9 nodes visited
+QN Jamaica
+  Jamaica 028 >> 10 nodes visited
+QN Cuba
+  Cuba 029 >> 5 nodes visited
+QN Austria
+  Austria 030 >> 4 nodes visited
+QN Azerbaijan
+  Azerbaijan 031 >> 5 nodes visited
+QN Botswana
+  Botswana 032 >> 6 nodes visited
+QN United Kingdom
+  United Kingdom 033 >> 6 nodes visited
+QN Canada
+  Canada 034 >> 3 nodes visited
+QN Kazakstan
+  Kazakstan 035 >> 9 nodes visited
+QN United States Minor Outlying Islands
+  United States Minor Outlying Islands 036 >> 5 nodes visited
+QN United States
+  United States 003 >> 3 nodes visited
+QN United
+  ERROR, not a valid country name >> 6 nodes visited
+QN A
+  ERROR, not a valid country name >> 4 nodes visited
+QN Apples
+  ERROR, not a valid country name >> 4 nodes visited
+QN Zorro
+  ERROR, not a valid country name >> 5 nodes visited
+LN 
+  026 Argentina
+  013 Australia
+  030 Austria
+  031 Azerbaijan
+  032 Botswana
+  004 Brazil
+  034 Canada
+  001 China
+  029 Cuba
+  019 Dominican Republic
+  008 Egypt
+  010 France
+  016 Greece
+  017 Hungary
+  002 India
+  028 Jamaica
+  027 Japan
+  020 Jordan
+  035 Kazakstan
+  011 Kenya
+  024 Liechtenstein
+  007 Mexico
+  006 Nigeria
+  022 Oman
+  021 Palestine
+  023 Qatar
+  005 Russian Federation
+  018 Sweden
+  009 Turkey
+  033 United Kingdom
+  003 United States
+  036 United States Minor Outlying Islands
+  012 Venezuela
+  025 Wallis and Futuna
+  015 Yugoslavia
+  014 Zimbabwe
+@ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @
+
+>> closed TransData FILE
+>> closed NameIndexBackup FILE
+>> ended UserApp - 63 transactions processed
+>> closed Log FILE
+
+N is 36, MaxID is 36, RootPtr is 0
 [SUB]	- - - Name - - - - - - - - -	DRP	LCh	RCh
 [000]	China				001	003	001
 [001]	India				002	007	002
 [002]	United States			003	004	011
-[003]	Brazil				004	012	-01
+[003]	Brazil				004	012	033
 [004]	Russian Federation		005	005	008
 [005]	Nigeria				006	006	020
 [006]	Mexico				007	010	-01
 [007]	Egypt				008	018	009
-[008]	Turkey				009	017	-01
+[008]	Turkey				009	017	032
 [009]	France				010	-01	015
 [010]	Kenya				011	019	023
-[011]	Venezuela			012	-01	013
-[012]	Australia			013	-01	-01
+[011]	Venezuela			012	035	013
+[012]	Australia			013	025	029
 [013]	Zimbabwe			014	014	-01
 [014]	Yugoslavia			015	024	-01
 [015]	Greece				016	-01	016
 [016]	Hungary				017	-01	-01
 [017]	Sweden				018	-01	-01
-[018]	Dominican Republic		019	-01	-01
-[019]	Jordan				020	-01	-01
+[018]	Dominican Republic		019	028	-01
+[019]	Jordan				020	026	034
 [020]	Palestine			021	021	022
 [021]	Oman				022	-01	-01
 [022]	Qatar				023	-01	-01
 [023]	Liechtenstein			024	-01	-01
 [024]	Wallis and Futuna		025	-01	-01
+[025]	Argentina			026	-01	-01
+[026]	Japan				027	027	-01
+[027]	Jamaica				028	-01	-01
+[028]	Cuba				029	-01	-01
+[029]	Austria				030	-01	030
+[030]	Azerbaijan			031	-01	031
+[031]	Botswana			032	-01	-01
+[032]	United Kingdom			033	-01	-01
+[033]	Canada				034	-01	-01
+[034]	Kazakstan			035	-01	-01
+[035]	United States Minor Outlying	036	-01	-01
 @ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @
+
+>> opened Log FILE
+>> started SetupPogram
+>> opened RawDataTester FILE
+>> opened NameIndexBackup FILE
+>> parsing file ...
+>> finished!
+>> closed NameIndexBackup FILE
+>> closed RawDataTester FILE
+>> ended SetupPogram - 25 data items processed
+>> closed Log FILE
 
 >> opened Log FILE
 >> started UserApp
@@ -275,3 +506,4 @@ N is 36, MaxID is 36, RootPtr is 0
 [034]	Kazakstan			035	-01	-01
 [035]	United States Minor Outlying	036	-01	-01
 @ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @
+

@@ -69,7 +69,7 @@ public class PrettyPrintUtility
         	} catch (EOFException e) { inFile.close(); }
         } catch (IOException e) {}
 
-    	writer.println("@ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @");
+    	writer.println("@ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @\n");
     	writer.close(); // close files
     }
     
