@@ -46,8 +46,8 @@ public class PrettyPrintUtility
 		} catch (IOException e) {}
 
         try {
-        	writer.println("\nN is " + inFile.readInt() + ", MaxID is " + inFile.readInt()
-        					   + ", RootPtr is " + inFile.readInt());
+        	writer.println("\nN is " + inFile.readShort() + ", MaxID is " + inFile.readShort()
+        					   + ", RootPtr is " + inFile.readShort());
         	writer.println("[SUB]\t- - - Name - - - - - - - - -\tDRP\tLCh\tRCh");
         } catch (IOException e) {}
 
@@ -62,9 +62,9 @@ public class PrettyPrintUtility
             		for(int j = 0; j < 4 - (name.length() / 8); j++) {
             			writer.print("\t"); // print correct # of tabs
             		}
-            		writer.println(fmt.format(inFile.readInt()) + "\t"
-            					   + fmt.format(inFile.readInt()) + "\t"
-            					   + fmt.format(inFile.readInt()));
+            		writer.println(fmt.format(inFile.readShort()) + "\t"
+            					   + fmt.format(inFile.readShort()) + "\t"
+            					   + fmt.format(inFile.readShort()));
                 }
         	} catch (EOFException e) { inFile.close(); }
         } catch (IOException e) {}

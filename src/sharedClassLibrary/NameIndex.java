@@ -91,11 +91,11 @@ public class NameIndex
     public void open() {
     	try { // open NameIndexBackup and, if data present, load it
 			inFile = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
-			inFile.skipBytes(12);
+			inFile.skipBytes(6);
 			try {
 				while (true) {
-					countries.add(new Country(inFile.readUTF(), inFile.readInt(),
-								  inFile.readInt(), inFile.readInt()));
+					countries.add(new Country(inFile.readUTF(), inFile.readShort(),
+								  inFile.readShort(), inFile.readShort()));
 				}
 			} catch (EOFException e) { inFile.close(); }
 		} catch (IOException e) {} 
@@ -105,14 +105,14 @@ public class NameIndex
     	try {
     		outFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
 
-	    	outFile.writeInt(countries.size());
-	    	outFile.writeInt(countries.size());
-	    	outFile.writeInt(0);
+	    	outFile.writeShort(countries.size());
+	    	outFile.writeShort(countries.size());
+	    	outFile.writeShort(0);
 	    	for(Country e : countries) { // print header and then each entry
 	    		outFile.writeUTF(e.getName());
-	    		outFile.writeInt(e.getId());
-	    		outFile.writeInt(e.getLeftChild());
-	    		outFile.writeInt(e.getRightChild());
+	    		outFile.writeShort(e.getId());
+	    		outFile.writeShort(e.getLeftChild());
+	    		outFile.writeShort(e.getRightChild());
 	    	}
 	    	outFile.close();
 	    } catch (IOException e) {}
