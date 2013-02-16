@@ -15,31 +15,33 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class RawData extends Parser
+public class RawData
 {
     /**************************** PRIVATE DECLARATIONS ************************/
 	private File file;
 	private BufferedReader buffer;
+	private RawDataRecord data;
     
     /**************************** PUBLIC CONSTRUCTOR(S) ***********************/
 	public RawData() {
 		file = new File("RawDataTester.csv");
+		data = new RawDataRecord();
 	}
 
 	/**************************** PUBLIC GET/SET METHODS **********************/
-	public String nextName() {
-		String line = ""; String name = "";
+	public RawDataRecord nextName() {
+		String line = ""; RawDataRecord record = null;
 
 		try {
 			if ((line = buffer.readLine()) != null) {
-				String[] data = parse(line); // from Parser class
-				name = data[1]; // name is in second position
+				data.parse(line);
+				record = data.getRecord(); // get record from RawDataRecord
 			} else {
-				name = null; // return null to calling class
+				record = null; // return null to calling class
 			}
 		} catch (IOException e) {}
  
-		return name;
+		return record;
 	}
 
     /**************************** PUBLIC SERVICE METHODS **********************/

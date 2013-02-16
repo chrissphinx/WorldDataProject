@@ -64,6 +64,12 @@ public class UserInterface
 			buffer = new BufferedReader(new FileReader(transFile));
 		} catch(IOException e) {}
     }
+
+    public void openTrans(File file) {
+        try {
+            buffer = new BufferedReader(new FileReader(file));
+        } catch(IOException e) {}
+    }
     
     public void closeLog() {
     	writer.close();

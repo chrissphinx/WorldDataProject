@@ -40,6 +40,8 @@ package setupProgram;
 import sharedClassLibrary.NameIndex;
 import sharedClassLibrary.RawData;
 import sharedClassLibrary.UserInterface;
+import sharedClassLibrary.RawDataRecord;
+import sharedClassLibrary.MainData;
 
 public class SetupProgram
 {
@@ -47,7 +49,9 @@ public class SetupProgram
 	private NameIndex NameIndex = new NameIndex();
 	private RawData RawData = new RawData();
 	private UserInterface UserInterface = new UserInterface();
+    private MainData MainData = new MainData();
 	
+    /**************************** MAIN ****************************************/
     public SetupProgram() {
     	UserInterface.openLog();
     	UserInterface.log(">> opened Log FILE\n");
@@ -58,9 +62,11 @@ public class SetupProgram
     	UserInterface.log(">> opened NameIndexBackup FILE\n");
 
     	UserInterface.log(">> parsing file ...\n");
-    	String name = ""; int numItems = 0; // locals for parsing
-    	while((name = RawData.nextName()) != null) {
-    		NameIndex.insert(name); numItems++;
+    	RawDataRecord record = null; int numItems = 0;
+    	while((record = RawData.nextName()) != null) {
+    		String[] result = NameIndex.insert(record.getName());
+            // MainData.printRec(Integer.parseInt(result[0]), record);
+            numItems++;
     	}
     	UserInterface.log(">> finished!\n");
 

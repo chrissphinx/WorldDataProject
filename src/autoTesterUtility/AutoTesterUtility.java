@@ -17,47 +17,25 @@ import setupProgram.SetupProgram;
 import userApp.UserApp;
 import prettyPrintUtility.PrettyPrintUtility;
 
-public class AutoTesterUtility {
-
+public class AutoTesterUtility
+{
+    /**************************** MAIN ****************************************/
     public static void main(String[] args) {
+        deleteFile("Log.txt");
+        deleteFile("NameIndexBackup.bin");
+
         SetupProgram.main(new String[] {});
         PrettyPrintUtility.main(new String[] {});
-        UserApp.main(new String[] {});
+        for (int i = 1; i < 4; i++) {
+            UserApp.main(new String[] { Integer.toString(i) });
+        }
         PrettyPrintUtility.main(new String[] {});
-
-        // System.out.println("OK, starting AutoTesterUtilty");
-
-        // // The 3 parallel arrays (all strings, including the N's) with
-        // //      - hard-coded SUFFIX values to designate which files to use
-        // //      - N's to limit how many records to display during testing
-        // // The dataFileSuffix is used for RawData*.csv, MainData*.bin,
-        // //      NameIndexBackup*.bin, CodeIndexBackup*.bin
-
-        // String dataFileSuffix[]  = {"Tester", ""    };
-        // String transFileSuffix[] = {"",       "All" };
-        // String nRecToShow[]      = {"All",    "60"  };
-
-        // //Delete the SINGLE output Log.txt file (if it exists)
-        // DeleteFile("Log.txt");
-
-        // for (int i = 0; i < dataFileSuffix.length; i++) {
-        //     //Delete 3 other output files (if they exist)
-        //     DeleteFile("MainData" + dataFileSuffix[i] + ".bin");
-        //     DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
-        //     DeleteFile("NameIndexBackup" + dataFileSuffix[i] + ".bin");
-            
-        //     //Run the other 3 programs
-        //     SetupProgram.main(new String[]{dataFileSuffix[i]});
-        //     UserApp.main(new String[]{dataFileSuffix[i],
-        //                 transFileSuffix[i]});
-        //     PrettyPrintUtility.main(new String[]{dataFileSuffix[i],
-        //                 nRecToShow[i]});
-        // }
     }
-    //**************************** PRIVATE METHOD ******************************
-    private static boolean DeleteFile(String fileName) {
+
+    /**************************** PRIVATE METHOD ******************************/
+    private static boolean deleteFile(String file) {
         boolean delete = false;
-        File f = new File(fileName);
+        File f = new File(file);
         if (f.exists()) {
             delete = f.delete();
         }

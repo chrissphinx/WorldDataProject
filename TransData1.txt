@@ -1,0 +1,22 @@
+QN China
+QN Wallis and Futuna
+QN Wallis and Futuna (HA! HA! HA!)
+QN Wallis and Futu
+QN China          
+QN China           (HA! HA! HA!)
+QN Western Michigan University
+DN China
+DN Western Michigan University
+LN
+QI 25
+QI 0
+QI 26
+QI 1
+QI 999999
+QI 10
+QN France
+DI 0
+DI 1
+DI 9999999
+LI
+QI 3

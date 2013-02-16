@@ -55,7 +55,7 @@ public class NameIndex
     public String[] insert(String name) {
     	if(countries.isEmpty()) { // if no entries yet, insert first one
     		countries.add(new Country(name, countries.size() + 1));
-    		return new String[] {Integer.toString(countries.size() + 1), "0"};
+    		return new String[] {Integer.toString(countries.size()), "0"};
     	} else {
     		visited = 0; // method must return inserted country ID and nodes visited
     		return insert(name, 0);
@@ -90,7 +90,8 @@ public class NameIndex
     /**************************** PUBLIC SERVICE METHODS **********************/
     public void open() {
     	try { // open NameIndexBackup and, if data present, load it
-			inFile = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
+			inFile = new DataInputStream(new BufferedInputStream(
+										 new FileInputStream(file)));
 			inFile.skipBytes(6);
 			try {
 				while (true) {
@@ -103,7 +104,8 @@ public class NameIndex
     
     public void close() {
     	try {
-    		outFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+    		outFile = new DataOutputStream(new BufferedOutputStream(
+    									   new FileOutputStream(file)));
 
 	    	outFile.writeShort(countries.size());
 	    	outFile.writeShort(countries.size());
