@@ -22,9 +22,10 @@ public class AutoTesterUtility
     /**************************** MAIN ****************************************/
     public static void main(String[] args) {
         deleteFile("Log.txt");
+        deleteFile("MainData.bin");
         deleteFile("NameIndexBackup.bin");
 
-        SetupProgram.main(new String[] {});
+        SetupProgram.main(new String[] { "Tester" });
         PrettyPrintUtility.main(new String[] {});
         for (int i = 1; i < 4; i++) {
             UserApp.main(new String[] { Integer.toString(i) });

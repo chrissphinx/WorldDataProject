@@ -1,8 +1,8 @@
 /* PROJECT: WorldDataProject (Java)         CLASS: NameIndex
  * AUTHOR: Colin MacCreery
- * FILES ACCESSED: NameIndexBackup.txt
+ * FILES ACCESSED: NameIndexBackup.bin
  * INTERNAL INDEX STRUCTURE: ArrayList
- * FILE STRUCTURE: Text CSV File
+ * FILE STRUCTURE: Binary File
  * DESCRIPTION: Provides methods to open and close the NameIndexBackup.txt
  * 				file as well as all insert/search/alphabetize logic for the
  * 				binary search tree. Header present for deletion by name

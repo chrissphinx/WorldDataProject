@@ -20,12 +20,15 @@ public class RawData
     /**************************** PRIVATE DECLARATIONS ************************/
 	private File file;
 	private BufferedReader buffer;
-	private RawDataRecord data;
+	private RawDataRecord data = new RawDataRecord();
     
     /**************************** PUBLIC CONSTRUCTOR(S) ***********************/
 	public RawData() {
-		file = new File("RawDataTester.csv");
-		data = new RawDataRecord();
+		file = new File("RawData.csv");
+	}
+
+	public RawData(String[] suffix) { // user provided file suffix
+		file = new File("RawData" + suffix[0] + ".csv");
 	}
 
 	/**************************** PUBLIC GET/SET METHODS **********************/
@@ -34,13 +37,13 @@ public class RawData
 
 		try {
 			if ((line = buffer.readLine()) != null) {
-				data.parse(line);
+				data.parse(line); // parse input
 				record = data.getRecord(); // get record from RawDataRecord
 			} else {
 				record = null; // return null to calling class
 			}
 		} catch (IOException e) {}
- 
+ 		// this method now returns a RawDataRecord object
 		return record;
 	}
 
@@ -54,7 +57,7 @@ public class RawData
 
 	public void close() {
 		try {
-			buffer.close();
+			buffer.close(); // close the file
 		} catch (IOException e) {}
 	}
 }

@@ -1,9 +1,12 @@
 /* PROJECT: WorldDataProject (Java)         CLASS: RawDataRecord
  * AUTHOR: Colin MacCreery
- * DESCRIPTION: Convenience class to avoid writing redundant code since
- * 				INSERT lines in both RawData and TransData files need to be
- * 				parsed correctly. Parses generally, returning an array of
- * 				the data contained in the INSERT line.
+ * DESCRIPTION: This was my Parser class from the first project, just reworked it
+ *				into a data structure. Only needs the one method parse() but does
+ *				not return a value anymore, just stores the appropriate values into
+ *				fields. getRecord() method provided because specs say that the
+ *				SetupProgram has to call insert() methods on both NameIndex AND
+ *				MainData classes. Otherwise could probably call MainData.insert()
+ *				from this class.
  ******************************************************************************/
 
 package sharedClassLibrary;
@@ -16,7 +19,7 @@ public class RawDataRecord
 	private String continent;
 	private int surfaceArea;
 	private int yearOfIndep;
-	private int population;
+	private long population;
 	private float lifeExp;
 	private int gnp;
 
@@ -45,7 +48,7 @@ public class RawDataRecord
 		return yearOfIndep;
 	}
 
-	public int getPopulation() {
+	public long getPopulation() {
 		return population;
 	}
 
@@ -77,7 +80,7 @@ public class RawDataRecord
 		this.yearOfIndep = yearOfIndep;
 	}
 
-	public void setPopulation(int population) {
+	public void setPopulation(long population) {
 		this.population = population;
 	}
 
@@ -105,7 +108,7 @@ public class RawDataRecord
 		this.continent = data[2]; // and store remaining of data
 		this.surfaceArea = Integer.parseInt(data[4]);
 		this.yearOfIndep = Integer.parseInt(data[5]);
-		this.population = Integer.parseInt(data[6]);
+		this.population = Long.parseLong(data[6]);
 		this.lifeExp = Float.parseFloat(data[7]);
 		this.gnp = Integer.parseInt(data[8]);
 	}

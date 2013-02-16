@@ -63,6 +63,8 @@ public class UserApp
         	UserInterface.log(">> started UserApp\n");
         	NameIndex.open(); // log a bunch of crap
         	UserInterface.log(">> opened NameIndexBackup FILE\n");
+        	MainData.open();
+        	UserInterface.log(">> opened MainData FILE\n");
         	UserInterface.openTrans(new File("TransData" + n + ".txt"));
         	UserInterface.log(">> opened TransData FILE\n");
 
@@ -91,7 +93,7 @@ public class UserApp
         		case "IN":			// insert a new country
         			record.parse(trans[1]); // from Parser class
         			result = NameIndex.insert(record.getName());
-                    MainData.printRec(Integer.parseInt(result[0]), record);
+                    MainData.write(Integer.parseInt(result[0]), record);
                     UserInterface.log("IN " + record.getName() + "\n"); // scrub request
                     if("-1".equals(result[0])) {
                         UserInterface.log("  ERROR, redundant entry >> " + result[1]
@@ -111,6 +113,8 @@ public class UserApp
 
         	UserInterface.log("\n>> closed TransData FILE\n");
         	UserInterface.closeTrans();
+        	UserInterface.log(">> closed MainData FILE\n");
+        	MainData.close();
         	UserInterface.log(">> closed NameIndexBackup FILE\n");
         	NameIndex.close(); // log a bunch of crap again
         	UserInterface.log(">> ended UserApp - " + numItems

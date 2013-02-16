@@ -2,8 +2,10 @@
 >> started SetupPogram
 >> opened RawDataTester FILE
 >> opened NameIndexBackup FILE
+>> opened MainData FILE
 >> parsing file ...
 >> finished!
+>> closed MainData FILE
 >> closed NameIndexBackup FILE
 >> closed RawDataTester FILE
 >> ended SetupPogram - 25 data items processed
@@ -42,6 +44,7 @@ N is 25, MaxID is 25, RootPtr is 0
 >> opened Log FILE
 >> started UserApp
 >> opened NameIndexBackup FILE
+>> opened MainData FILE
 >> opened TransData FILE
 >> parsing file ...
 
@@ -105,6 +108,7 @@ QI 3
 @ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @
 
 >> closed TransData FILE
+>> closed MainData FILE
 >> closed NameIndexBackup FILE
 >> ended UserApp - 22 transactions processed
 >> closed Log FILE
@@ -112,12 +116,14 @@ QI 3
 >> opened Log FILE
 >> started UserApp
 >> opened NameIndexBackup FILE
+>> opened MainData FILE
 >> opened TransData FILE
 >> parsing file ...
 
 @ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @
 
 >> closed TransData FILE
+>> closed MainData FILE
 >> closed NameIndexBackup FILE
 >> ended UserApp - 0 transactions processed
 >> closed Log FILE
@@ -125,6 +131,7 @@ QI 3
 >> opened Log FILE
 >> started UserApp
 >> opened NameIndexBackup FILE
+>> opened MainData FILE
 >> opened TransData FILE
 >> parsing file ...
 
@@ -190,6 +197,7 @@ LN
 @ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @
 
 >> closed TransData FILE
+>> closed MainData FILE
 >> closed NameIndexBackup FILE
 >> ended UserApp - 19 transactions processed
 >> closed Log FILE

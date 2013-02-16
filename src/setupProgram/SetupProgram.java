@@ -47,12 +47,13 @@ public class SetupProgram
 {
     /**************************** PRIVATE DECLARATIONS ************************/
 	private NameIndex NameIndex = new NameIndex();
-	private RawData RawData = new RawData();
+	private RawData RawData;
 	private UserInterface UserInterface = new UserInterface();
     private MainData MainData = new MainData();
 	
     /**************************** MAIN ****************************************/
-    public SetupProgram() {
+    public SetupProgram(String[] args) {
+        RawData = new RawData(args);
     	UserInterface.openLog();
     	UserInterface.log(">> opened Log FILE\n");
     	UserInterface.log(">> started SetupPogram\n");
@@ -60,16 +61,20 @@ public class SetupProgram
     	UserInterface.log(">> opened RawDataTester FILE\n");
     	NameIndex.open();
     	UserInterface.log(">> opened NameIndexBackup FILE\n");
+    	MainData.open();
+    	UserInterface.log(">> opened MainData FILE\n");
 
     	UserInterface.log(">> parsing file ...\n");
     	RawDataRecord record = null; int numItems = 0;
     	while((record = RawData.nextName()) != null) {
     		String[] result = NameIndex.insert(record.getName());
-            MainData.printRec(Integer.parseInt(result[0]), record);
+            MainData.write(Integer.parseInt(result[0]), record);
             numItems++;
     	}
     	UserInterface.log(">> finished!\n");
 
+    	UserInterface.log(">> closed MainData FILE\n");
+    	MainData.close();
         UserInterface.log(">> closed NameIndexBackup FILE\n");
         NameIndex.close();
         UserInterface.log(">> closed RawDataTester FILE\n");
@@ -81,6 +86,6 @@ public class SetupProgram
     }
     
     public static void main(String[] args) {
-    	new SetupProgram(); // remove annoying non-static error msgs
+    	new SetupProgram(args); // remove annoying non-static error msgs
     }
 }
