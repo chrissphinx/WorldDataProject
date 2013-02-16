@@ -46,7 +46,8 @@ public class PrettyPrintUtility
 		} catch (IOException e) {}
 
         try {
-        	writer.println("\nN is " + inFile.readShort() + ", MaxID is " + inFile.readShort()
+            writer.println("NAME INDEX");
+        	writer.println("N is " + inFile.readShort() + ", MaxID is " + inFile.readShort()
         					   + ", RootPtr is " + inFile.readShort());
         	writer.println("[SUB]\t- - - Name - - - - - - - - -\tDRP\tLCh\tRCh");
         } catch (IOException e) {}

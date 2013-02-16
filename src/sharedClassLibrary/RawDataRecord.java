@@ -89,7 +89,7 @@ public class RawDataRecord
 		this.gnp = gnp;
 	}
 
-	/**************************** PRIVATE METHODS *****************************/
+    /**************************** PUBLIC SERVICE METHODS **********************/
 	public void parse(String line) {
 		line = line.substring(line.indexOf('(') + 1, line.length() - 2);
 		String[] data = line.split(","); // pull values from inside ()'s and split
@@ -98,11 +98,11 @@ public class RawDataRecord
 			if(data[i].startsWith("'"))
 			   data[i] = data[i].substring(1, data[i].length() - 1);
 			if("NULL".compareTo(data[i]) == 0)
-			   data[i] = "0";
+			   data[i] = "0"; // convert NULL values to zero
 		}
-		this.code = data[0];
-		this.name = data[1];
-		this.continent = data[2];
+		this.code = data[0]; // truncate names longer than 15 characters
+		this.name = data[1].length() > 15 ? data[1].substring(0, 15) : data[1];
+		this.continent = data[2]; // and store remaining of data
 		this.surfaceArea = Integer.parseInt(data[4]);
 		this.yearOfIndep = Integer.parseInt(data[5]);
 		this.population = Integer.parseInt(data[6]);

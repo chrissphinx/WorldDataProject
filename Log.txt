@@ -9,13 +9,14 @@
 >> ended SetupPogram - 25 data items processed
 >> closed Log FILE
 
+NAME INDEX
 N is 25, MaxID is 25, RootPtr is 0
 [SUB]	- - - Name - - - - - - - - -	DRP	LCh	RCh
 [000]	China				001	003	001
 [001]	India				002	007	002
 [002]	United States			003	004	011
 [003]	Brazil				004	012	-01
-[004]	Russian Federation		005	005	008
+[004]	Russian Federat			005	005	008
 [005]	Nigeria				006	006	020
 [006]	Mexico				007	010	-01
 [007]	Egypt				008	018	009
@@ -29,13 +30,13 @@ N is 25, MaxID is 25, RootPtr is 0
 [015]	Greece				016	-01	016
 [016]	Hungary				017	-01	-01
 [017]	Sweden				018	-01	-01
-[018]	Dominican Republic		019	-01	-01
+[018]	Dominican Repub			019	-01	-01
 [019]	Jordan				020	-01	-01
 [020]	Palestine			021	021	022
 [021]	Oman				022	-01	-01
 [022]	Qatar				023	-01	-01
 [023]	Liechtenstein			024	-01	-01
-[024]	Wallis and Futuna		025	-01	-01
+[024]	Wallis and Futu			025	-01	-01
 @ @ @ @ @ @ @ @ @ END OF FILE @ @ @ @ @ @ @ @
 
 >> opened Log FILE
@@ -47,11 +48,11 @@ N is 25, MaxID is 25, RootPtr is 0
 QN China
   China 001 >> 1 nodes visited
 QN Wallis and Futuna
-  Wallis and Futuna 025 >> 7 nodes visited
+  ERROR, not a valid country name >> 7 nodes visited
 QN Wallis and Futuna (HA! HA! HA!)
   ERROR, not a valid country name >> 7 nodes visited
 QN Wallis and Futu
-  ERROR, not a valid country name >> 7 nodes visited
+  Wallis and Futu 025 >> 7 nodes visited
 QN China
   China 001 >> 1 nodes visited
 QN China           (HA! HA! HA!)
@@ -66,7 +67,7 @@ LN
   013 Australia
   004 Brazil
   001 China
-  019 Dominican Republic
+  019 Dominican Repub
   008 Egypt
   010 France
   016 Greece
@@ -80,12 +81,12 @@ LN
   022 Oman
   021 Palestine
   023 Qatar
-  005 Russian Federation
+  005 Russian Federat
   018 Sweden
   009 Turkey
   003 United States
   012 Venezuela
-  025 Wallis and Futuna
+  025 Wallis and Futu
   015 Yugoslavia
   014 Zimbabwe
 QI 25
@@ -107,6 +108,7 @@ QI 3
 >> closed NameIndexBackup FILE
 >> ended UserApp - 22 transactions processed
 >> closed Log FILE
+
 >> opened Log FILE
 >> started UserApp
 >> opened NameIndexBackup FILE
@@ -119,6 +121,7 @@ QI 3
 >> closed NameIndexBackup FILE
 >> ended UserApp - 0 transactions processed
 >> closed Log FILE
+
 >> opened Log FILE
 >> started UserApp
 >> opened NameIndexBackup FILE
@@ -160,7 +163,7 @@ LN
   004 Brazil
   001 China
   029 Cuba
-  019 Dominican Republic
+  019 Dominican Repub
   008 Egypt
   010 France
   016 Greece
@@ -176,12 +179,12 @@ LN
   022 Oman
   021 Palestine
   023 Qatar
-  005 Russian Federation
+  005 Russian Federat
   018 Sweden
   009 Turkey
   003 United States
   012 Venezuela
-  025 Wallis and Futuna
+  025 Wallis and Futu
   015 Yugoslavia
   014 Zimbabwe
 @ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @
@@ -191,13 +194,14 @@ LN
 >> ended UserApp - 19 transactions processed
 >> closed Log FILE
 
+NAME INDEX
 N is 30, MaxID is 30, RootPtr is 0
 [SUB]	- - - Name - - - - - - - - -	DRP	LCh	RCh
 [000]	China				001	003	001
 [001]	India				002	007	002
 [002]	United States			003	004	011
 [003]	Brazil				004	012	-01
-[004]	Russian Federation		005	005	008
+[004]	Russian Federat			005	005	008
 [005]	Nigeria				006	006	020
 [006]	Mexico				007	010	-01
 [007]	Egypt				008	018	009
@@ -211,13 +215,13 @@ N is 30, MaxID is 30, RootPtr is 0
 [015]	Greece				016	-01	016
 [016]	Hungary				017	-01	-01
 [017]	Sweden				018	-01	-01
-[018]	Dominican Republic		019	028	-01
+[018]	Dominican Repub			019	028	-01
 [019]	Jordan				020	026	-01
 [020]	Palestine			021	021	022
 [021]	Oman				022	-01	-01
 [022]	Qatar				023	-01	-01
 [023]	Liechtenstein			024	-01	-01
-[024]	Wallis and Futuna		025	-01	-01
+[024]	Wallis and Futu			025	-01	-01
 [025]	Argentina			026	-01	-01
 [026]	Japan				027	027	-01
 [027]	Jamaica				028	-01	-01

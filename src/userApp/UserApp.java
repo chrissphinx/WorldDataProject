@@ -44,6 +44,7 @@ package userApp;
 import sharedClassLibrary.NameIndex;
 import sharedClassLibrary.RawDataRecord;
 import sharedClassLibrary.UserInterface;
+import sharedClassLibrary.MainData;
 import java.io.File;
 
 public class UserApp
@@ -52,6 +53,7 @@ public class UserApp
 	private NameIndex NameIndex = new NameIndex();
 	private UserInterface UserInterface = new UserInterface();
     private RawDataRecord record = new RawDataRecord();
+    private MainData MainData = new MainData();
 
 	/**************************** MAIN ****************************************/
     public UserApp(String[] args) {
@@ -89,6 +91,7 @@ public class UserApp
         		case "IN":			// insert a new country
         			record.parse(trans[1]); // from Parser class
         			result = NameIndex.insert(record.getName());
+                    MainData.printRec(Integer.parseInt(result[0]), record);
                     UserInterface.log("IN " + record.getName() + "\n"); // scrub request
                     if("-1".equals(result[0])) {
                         UserInterface.log("  ERROR, redundant entry >> " + result[1]
@@ -112,7 +115,7 @@ public class UserApp
         	NameIndex.close(); // log a bunch of crap again
         	UserInterface.log(">> ended UserApp - " + numItems
         					  + " transactions processed\n");
-        	UserInterface.log(">> closed Log FILE\n");
+        	UserInterface.log(">> closed Log FILE\n\n");
         	UserInterface.closeLog();
         }
     }

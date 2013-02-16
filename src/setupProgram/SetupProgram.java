@@ -65,7 +65,7 @@ public class SetupProgram
     	RawDataRecord record = null; int numItems = 0;
     	while((record = RawData.nextName()) != null) {
     		String[] result = NameIndex.insert(record.getName());
-            // MainData.printRec(Integer.parseInt(result[0]), record);
+            MainData.printRec(Integer.parseInt(result[0]), record);
             numItems++;
     	}
     	UserInterface.log(">> finished!\n");
@@ -76,7 +76,7 @@ public class SetupProgram
         RawData.close(); // log a bunch of crap again
     	UserInterface.log(">> ended SetupPogram - " + numItems
     					  + " data items processed\n");
-    	UserInterface.log(">> closed Log FILE\n");
+    	UserInterface.log(">> closed Log FILE\n\n");
     	UserInterface.closeLog();
     }
     
