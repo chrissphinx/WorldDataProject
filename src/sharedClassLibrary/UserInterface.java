@@ -25,7 +25,7 @@ public class UserInterface
 
     /**************************** PUBLIC CONSTRUCTOR(S) ***********************/
     public UserInterface() {
-    	logFile = new File("Log.txt");
+    	logFile = new File("Log.txt"); // default file names
     	transFile = new File("TransData.txt");
     	try {
 			logFile.createNewFile();
@@ -66,7 +66,7 @@ public class UserInterface
     }
 
     public void openTrans(File file) {
-        try {
+        try { // overloaded method for non-default files
             buffer = new BufferedReader(new FileReader(file));
         } catch(IOException e) {}
     }

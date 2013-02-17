@@ -11,6 +11,8 @@
 
 package sharedClassLibrary;
 
+import java.text.DecimalFormat;
+
 public class RawDataRecord
 {
     /**************************** PRIVATE DECLARATIONS ************************/
@@ -22,6 +24,7 @@ public class RawDataRecord
 	private long population;
 	private float lifeExp;
 	private int gnp;
+	private DecimalFormat fmt = new DecimalFormat("##,###,###,##0");
 
     /**************************** PUBLIC GET/SET METHODS **********************/
 	public RawDataRecord getRecord() {
@@ -90,6 +93,18 @@ public class RawDataRecord
 
 	public void setGnp(int gnp) {
 		this.gnp = gnp;
+	}
+
+	@Override
+	public String toString() {
+		return code
+       + " " + name
+       + " " + continent
+       + " " + String.format("%10s", fmt.format(surfaceArea))
+       + " " + String.format("%5s", yearOfIndep)
+       + " " + String.format("%13s", fmt.format(population))
+       + " " + String.format("%4s", lifeExp)
+       + " " + String.format("%9s", fmt.format(gnp));
 	}
 
     /**************************** PUBLIC SERVICE METHODS **********************/

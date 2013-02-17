@@ -47,23 +47,23 @@ public class MainData
 		} catch (IOException e) {}
 	}
     
-    public RawDataRecord search(int id) {
+    public RawDataRecord read(int id) {
     	try {
 			record = new RawDataRecord();
 			ram.seek((id - 1) * REC_SIZE + HEAD_SIZE);
-			System.out.println("Reading ID: " + ram.readShort());
-
+			ram.readShort();
+			
 			byte[] code = new byte[3];
 			ram.read(code);
 			record.setCode(new String(code));
 			
 			byte[] name = new byte[15];
 			ram.read(name);
-			record.setName(new String(name).trim());
+			record.setName(new String(name));
 			
 			byte[] continent = new byte[13];
 			ram.read(continent);
-			record.setContinent(new String(continent).trim());
+			record.setContinent(new String(continent));
 			
 			record.setSurfaceArea(ram.readInt());
 			record.setYearOfIndep(ram.readShort());

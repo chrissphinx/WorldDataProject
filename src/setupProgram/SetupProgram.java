@@ -42,6 +42,7 @@ import sharedClassLibrary.RawData;
 import sharedClassLibrary.UserInterface;
 import sharedClassLibrary.RawDataRecord;
 import sharedClassLibrary.MainData;
+import java.text.DecimalFormat;
 
 public class SetupProgram
 {
@@ -50,6 +51,7 @@ public class SetupProgram
 	private RawData RawData;
 	private UserInterface UserInterface = new UserInterface();
     private MainData MainData = new MainData();
+    private DecimalFormat fmt = new DecimalFormat("000");
 	
     /**************************** MAIN ****************************************/
     public SetupProgram(String[] args) {
@@ -69,6 +71,8 @@ public class SetupProgram
     	while((record = RawData.nextName()) != null) {
     		String[] result = NameIndex.insert(record.getName());
             MainData.write(Integer.parseInt(result[0]), record);
+            RawDataRecord recRead = MainData.read(Integer.parseInt(result[0]));
+            System.out.println(fmt.format(Integer.parseInt(result[0])) + " " + recRead);      
             numItems++;
     	}
     	UserInterface.log(">> finished!\n");
