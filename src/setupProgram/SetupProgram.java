@@ -71,8 +71,7 @@ public class SetupProgram
     	while((record = RawData.nextName()) != null) {
     		String[] result = NameIndex.insert(record.getName());
             MainData.write(Integer.parseInt(result[0]), record);
-            RawDataRecord recRead = MainData.read(Integer.parseInt(result[0]));
-            System.out.println(fmt.format(Integer.parseInt(result[0])) + " " + recRead);      
+            RawDataRecord recRead = MainData.read(Integer.parseInt(result[0]));      
             numItems++;
     	}
     	UserInterface.log(">> finished!\n");

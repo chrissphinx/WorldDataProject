@@ -19,7 +19,7 @@ public class MainData
     private RandomAccessFile ram;
     private RawDataRecord record;
     private static final int HEAD_SIZE = 2;
-	private static final int REC_SIZE = 60;
+	private static final int REC_SIZE = 55;
    
     /**************************** PUBLIC CONSTRUCTOR(S) ***********************/
     public MainData() {
@@ -44,15 +44,24 @@ public class MainData
 			ram.writeLong(record.getPopulation());
 			ram.writeFloat(record.getLifeExp());
 			ram.writeInt(record.getGnp());
+			ram.seek(HEAD_SIZE);
 		} catch (IOException e) {}
 	}
     
     public RawDataRecord read(int id) {
     	try {
-			record = new RawDataRecord();
 			ram.seek((id - 1) * REC_SIZE + HEAD_SIZE);
-			ram.readShort();
-			
+			read();
+			ram.seek(HEAD_SIZE);
+		} catch (IOException e) {}
+    	return record;
+    }
+
+    public RawDataRecord read() {
+    	record = new RawDataRecord();
+    	try {
+    		ram.readShort();
+
 			byte[] code = new byte[3];
 			ram.read(code);
 			record.setCode(new String(code));
@@ -70,7 +79,7 @@ public class MainData
 			record.setPopulation(ram.readLong());
 			record.setLifeExp(ram.readFloat());
 			record.setGnp(ram.readInt());
-		} catch (IOException e) {}
+    	} catch (IOException e) {}
     	return record;
     }
     
@@ -90,7 +99,4 @@ public class MainData
 			ram.close();
 		} catch (IOException e) {}
     }
-    
-    /**************************** PRIVATE METHODS *****************************/
-	
 }

@@ -46,20 +46,22 @@ import sharedClassLibrary.RawDataRecord;
 import sharedClassLibrary.UserInterface;
 import sharedClassLibrary.MainData;
 import java.io.File;
+import java.text.DecimalFormat;
 
 public class UserApp
 {
 	/**************************** PRIVATE DECLARATIONS ************************/
 	private NameIndex NameIndex = new NameIndex();
 	private UserInterface UserInterface = new UserInterface();
-    private RawDataRecord record = new RawDataRecord();
+    private RawDataRecord record;
     private MainData MainData = new MainData();
+    private DecimalFormat fmt = new DecimalFormat("000");
 
 	/**************************** MAIN ****************************************/
     public UserApp(String[] args) {
         for (String n : args) {
         	UserInterface.openLog();
-        	UserInterface.log(">> opened Log FILE\n");
+        	UserInterface.log("\n>> opened Log FILE\n");
         	UserInterface.log(">> started UserApp\n");
         	NameIndex.open(); // log a bunch of crap
         	UserInterface.log(">> opened NameIndexBackup FILE\n");
@@ -71,6 +73,7 @@ public class UserApp
         	UserInterface.log(">> parsing file ...\n\n");
         	String[] trans = new String[2]; // locals for parsing
         	String[] result; int numItems = 0;
+            int id;
         	while((trans = UserInterface.nextTrans()) != null) {
         		numItems++; // increment processed items and echo request
         		if(!"IN".equals(trans[0]))
@@ -79,22 +82,44 @@ public class UserApp
         		switch(trans[0]) { // check request type
         		case "QN":			// query by name
         			UserInterface.log("  ");
-        			result = NameIndex.search(trans[1]);
-        			if(!"".equals(result[0])) {
-        				UserInterface.log(result[0]);
-        			} else UserInterface.log("ERROR, not a valid country name");
-        			UserInterface.log(" >> " + result[1] + " nodes visited\n");
+        			id = NameIndex.search(trans[1]);
+        			if(id != -1) {
+        				UserInterface.log(fmt.format(id) + " "
+                                          + MainData.read(id).toString() + "\n");
+        			} else UserInterface.log("ERROR, not a valid country name\n");
         			break;
+                case "QI":          // query by id
+                    UserInterface.log("  ");
+                    id = Integer.parseInt(trans[1]);
+                    if ((record = MainData.read(id)).getCode() != null) {
+                        UserInterface.log(fmt.format(id) + " " + record + "\n");
+                    } else UserInterface.log("ERROR, not a valid country ID\n");
+                    break;
         		case "LN":			// list alphabetically by name
-        			for(String[] e : NameIndex.getAlphabetical()) {
-        				UserInterface.log("  " + e[0] + " " + e[1] + "\n");
-        			}
+                    UserInterface.log("  ID CODE NAME----------- CONTINENT---- "
+                                      + "------AREA INDEP ---POPULATION L.EX "
+                                      + "------GNP\n");
+        			for(int e : NameIndex.getAlphabetical()) {
+        				UserInterface.log("  " + fmt.format(e) + " "
+                                          + MainData.read(e) + "\n");
+                    }
         			break;
+                case "LI":          // list by id
+                    UserInterface.log("  ID CODE NAME----------- CONTINENT---- "
+                                      + "------AREA INDEP ---POPULATION L.EX "
+                                      + "------GNP\n");
+                    int i = 1;
+                    while ((record = MainData.read()).getCode() != null) {
+                        UserInterface.log("  " + fmt.format(i++) + " "
+                                          + record + "\n");
+                    }
+                    break;
         		case "IN":			// insert a new country
+                    record = new RawDataRecord();
         			record.parse(trans[1]); // from Parser class
         			result = NameIndex.insert(record.getName());
                     MainData.write(Integer.parseInt(result[0]), record);
-                    UserInterface.log("IN " + record.getName() + "\n"); // scrub request
+                    UserInterface.log("IN " + record.getName() + "\n");
                     if("-1".equals(result[0])) {
                         UserInterface.log("  ERROR, redundant entry >> " + result[1]
                                           + " nodes visited\n");
@@ -107,6 +132,10 @@ public class UserApp
         			UserInterface.log("  SORRY, deleting by name"
         							  + " not yet operational\n");
         			break;
+                case "DI":          // delete by id
+                    UserInterface.log("  SORRY, deleting by ID"
+                                      + " not yet operational\n");
+                    break;
         		}
         	}
         	UserInterface.log("@ @ @ @ @ @ @ @ @ THE END @ @ @ @ @ @ @ @\n");

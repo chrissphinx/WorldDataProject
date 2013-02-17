@@ -62,22 +62,21 @@ public class NameIndex
     	}
     }
     
-    public String[] search(String name) {
-    	if(countries.isEmpty()) return new String[] {"", "0"};
-    	visited = 0; // method must return name & id as well as nodes visited
+    public int search(String name) {
+    	if(countries.isEmpty()) return -1;
+    	visited = 0; // method must now return just id to be used by MainData
     	name = name.toLowerCase(); // need uniform formatting for string comparison
     	return search(name, 0);
     }
     
-    public String[][] getAlphabetical() {
-    	String[][] results = new String[countries.size()][2];
+    public int[] getAlphabetical() {
+    	int[] results = new int[countries.size()];
     	alphaList = new ArrayList<Country>();
     	getAlphabetical(0); // method returns id and name in a 2D array
     	
     	int i = 0; // but need to use temporary ArrayList to alphabetize
     	for(Country e : alphaList) {
-    		results[i][0] = fmt.format(e.getId());
-    		results[i++][1] = e.getName();
+    		results[i++] = e.getId();
     	}
     	
     	return results;
@@ -148,26 +147,24 @@ public class NameIndex
 		} // lastly, don't add redundant entries
 	}
 	
-	private String[] search(String name, int parent) {
+	private int search(String name, int parent) {
 		visited++; // visited this node
 
 		if(name.compareTo(countries.get(parent).getName().toLowerCase()) < 0) {
 			if(countries.get(parent).getLeftChild() == -1) {
-				return new String[] {"", Integer.toString(visited)};
+				return -1;
 			} else { // stop on -1 or continue searching to the LEFT of this node
 				return search(name, countries.get(parent).getLeftChild());
 			}
 
 		} else if(name.compareTo(countries.get(parent).getName().toLowerCase()) >0){
 			if(countries.get(parent).getRightChild() == -1) {
-				return new String[] {"", Integer.toString(visited)};
+				return -1;
 			} else { // stop on -1 or continue searching to the RIGHT of this node
 				return search(name, countries.get(parent).getRightChild());
 			}
 		// strings must match so return array {name & id, nodes visited}
-		} else return new String[] {countries.get(parent).getName() + " "
-									+ fmt.format(countries.get(parent).getId()),
-									Integer.toString(visited)};
+		} else return countries.get(parent).getId();
 	}
 
 	private void getAlphabetical(int parent) {
